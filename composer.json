@@ -22,12 +22,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Seagull4auka\\IPLocation\\": "src"
+      "NuthouseCIS\\IPLocation\\": "src"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Seagull4auka\\IPLocation\\Tests\\": "tests"
+      "NuthouseCIS\\IPLocation\\Tests\\": "tests"
     }
   }
 }

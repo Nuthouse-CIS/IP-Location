@@ -1,13 +1,13 @@
 <?php
 
-namespace Seagull4auka\IPLocation\Tests\Location;
+namespace NuthouseCIS\IPLocation\Tests\Location;
 
+use NuthouseCIS\IPLocation\Location\City;
+use NuthouseCIS\IPLocation\Location\Coordinates;
+use NuthouseCIS\IPLocation\Location\Country;
+use NuthouseCIS\IPLocation\Location\Location;
+use NuthouseCIS\IPLocation\Location\Region;
 use PHPUnit\Framework\TestCase;
-use Seagull4auka\IPLocation\Location\City;
-use Seagull4auka\IPLocation\Location\Coordinates;
-use Seagull4auka\IPLocation\Location\Country;
-use Seagull4auka\IPLocation\Location\Location;
-use Seagull4auka\IPLocation\Location\Region;
 
 class LocationTest extends TestCase
 {
@@ -29,7 +29,9 @@ class LocationTest extends TestCase
         $location = new Location(
             $country = new Country(null, null, 'Russia', new Coordinates(1, 1)),
             $region = new Region(
-                'Saint-Petersburg', null, new Coordinates(2, 2)
+                'Saint-Petersburg',
+                null,
+                new Coordinates(2, 2)
             ),
             $city = new City(
                 'Saint-Petersburg',

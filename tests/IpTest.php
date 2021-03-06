@@ -1,9 +1,9 @@
 <?php
 
-namespace Seagull4auka\IPLocation\Tests;
+namespace NuthouseCIS\IPLocation\Tests;
 
 use InvalidArgumentException;
-use Seagull4auka\IPLocation\Ip;
+use NuthouseCIS\IPLocation\Ip;
 use PHPUnit\Framework\TestCase;
 
 class IpTest extends TestCase

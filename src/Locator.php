@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Seagull4auka\IPLocation;
+namespace NuthouseCIS\IPLocation;
 
-use Seagull4auka\IPLocation\Location\Location;
+use NuthouseCIS\IPLocation\Location\Location;
 
 interface Locator
 {

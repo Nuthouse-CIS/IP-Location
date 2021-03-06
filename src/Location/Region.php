@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Seagull4auka\IPLocation\Location;
+namespace NuthouseCIS\IPLocation\Location;
 
 class Region
 {

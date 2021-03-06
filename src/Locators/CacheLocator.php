@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Seagull4auka\IPLocation\Locators;
+namespace NuthouseCIS\IPLocation\Locators;
 
+use NuthouseCIS\IPLocation\Ip;
+use NuthouseCIS\IPLocation\Location\Location;
+use NuthouseCIS\IPLocation\Locator;
 use Psr\SimpleCache\CacheInterface;
-use Seagull4auka\IPLocation\Ip;
-use Seagull4auka\IPLocation\Location\Location;
-use Seagull4auka\IPLocation\Locator;
 
 class CacheLocator implements Locator
 {
@@ -16,8 +16,12 @@ class CacheLocator implements Locator
     private int $ttl;
     private string $prefix;
 
-    public function __construct(Locator $next, CacheInterface $cache, int $ttl, string $prefix = 'location-')
-    {
+    public function __construct(
+        Locator $next,
+        CacheInterface $cache,
+        int $ttl,
+        string $prefix = 'location-'
+    ) {
         $this->next = $next;
         $this->cache = $cache;
         $this->ttl = $ttl;
@@ -35,6 +39,7 @@ class CacheLocator implements Locator
             $location = $this->next->locate($ip);
             $this->cache->set($key, $location, $this->ttl);
         }
+
         return $location;
     }
 }

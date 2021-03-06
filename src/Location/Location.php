@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Seagull4auka\IPLocation\Location;
+namespace NuthouseCIS\IPLocation\Location;
 
 class Location
 {
@@ -47,7 +47,8 @@ class Location
     {
         if (($city = $this->getCity()) !== null && $city->getCoordinates()) {
             return $city->getCoordinates();
-        } elseif (($region = $this->getRegion()) !== null
+        } elseif (
+            ($region = $this->getRegion()) !== null
             && $region->getCoordinates()
         ) {
             return $region->getCoordinates();

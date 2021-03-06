@@ -1,9 +1,9 @@
 <?php
 
-namespace Seagull4auka\IPLocation\Tests\Location;
+namespace NuthouseCIS\IPLocation\Tests\Location;
 
+use NuthouseCIS\IPLocation\Location\Coordinates;
 use PHPUnit\Framework\TestCase;
-use Seagull4auka\IPLocation\Location\Coordinates;
 
 class CoordinatesTest extends TestCase
 {

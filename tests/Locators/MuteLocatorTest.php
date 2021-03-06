@@ -1,13 +1,13 @@
 <?php
 
-namespace Seagull4auka\IPLocation\Tests\Locators;
+namespace NuthouseCIS\IPLocation\Tests\Locators;
 
 use Exception;
+use NuthouseCIS\IPLocation\Handlers\ErrorHandler;
+use NuthouseCIS\IPLocation\Ip;
+use NuthouseCIS\IPLocation\Locator;
+use NuthouseCIS\IPLocation\Locators\MuteLocator;
 use PHPUnit\Framework\TestCase;
-use Seagull4auka\IPLocation\Handlers\ErrorHandler;
-use Seagull4auka\IPLocation\Ip;
-use Seagull4auka\IPLocation\Locator;
-use Seagull4auka\IPLocation\Locators\MuteLocator;
 
 class MuteLocatorTest extends TestCase
 {

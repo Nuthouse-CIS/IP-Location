@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Seagull4auka\IPLocation;
+namespace NuthouseCIS\IPLocation;
 
 use Webmozart\Assert\Assert;
 

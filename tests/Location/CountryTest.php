@@ -1,11 +1,11 @@
 <?php
 
-namespace Seagull4auka\IPLocation\Tests\Location;
+namespace NuthouseCIS\IPLocation\Tests\Location;
 
 use InvalidArgumentException;
+use NuthouseCIS\IPLocation\Location\Coordinates;
+use NuthouseCIS\IPLocation\Location\Country;
 use PHPUnit\Framework\TestCase;
-use Seagull4auka\IPLocation\Location\Coordinates;
-use Seagull4auka\IPLocation\Location\Country;
 
 class CountryTest extends TestCase
 {

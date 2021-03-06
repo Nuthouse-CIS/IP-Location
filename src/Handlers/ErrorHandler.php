@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Seagull4auka\IPLocation\Handlers;
+namespace NuthouseCIS\IPLocation\Handlers;
 
 use Exception;
 
