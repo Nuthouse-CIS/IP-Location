@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Seagull4auka\IPLocation\Locators;
 
 use Seagull4auka\IPLocation\Ip;
-use Seagull4auka\IPLocation\Location;
+use Seagull4auka\IPLocation\Location\Location;
 use Seagull4auka\IPLocation\Locator;
 
 class ChainLocator implements Locator

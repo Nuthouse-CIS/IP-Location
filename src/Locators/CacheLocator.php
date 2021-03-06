@@ -6,7 +6,7 @@ namespace Seagull4auka\IPLocation\Locators;
 
 use Psr\SimpleCache\CacheInterface;
 use Seagull4auka\IPLocation\Ip;
-use Seagull4auka\IPLocation\Location;
+use Seagull4auka\IPLocation\Location\Location;
 use Seagull4auka\IPLocation\Locator;
 
 class CacheLocator implements Locator

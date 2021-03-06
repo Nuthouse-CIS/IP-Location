@@ -7,7 +7,7 @@ namespace Seagull4auka\IPLocation\Locators;
 use Exception;
 use Seagull4auka\IPLocation\Handlers\ErrorHandler;
 use Seagull4auka\IPLocation\Ip;
-use Seagull4auka\IPLocation\Location;
+use Seagull4auka\IPLocation\Location\Location;
 use Seagull4auka\IPLocation\Locator;
 
 class MuteLocator implements Locator
