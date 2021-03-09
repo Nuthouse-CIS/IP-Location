@@ -15,7 +15,7 @@ class Location
         Country $country,
         ?Region $region,
         ?City $city,
-        ?array $extra = []
+        ?array $extra = null
     ) {
         $this->country = $country;
         $this->region = $region;
