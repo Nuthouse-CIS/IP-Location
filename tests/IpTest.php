@@ -11,15 +11,15 @@ class IpTest extends TestCase
     public function testIPv4(): void
     {
         $ip = new Ip($value = '8.8.8.8');
-        $this->assertEquals($value, $ip->getValue());
-        $this->assertEquals($value, (string)$ip);
+        $this->assertSame($value, $ip->getValue());
+        $this->assertSame($value, (string)$ip);
     }
 
     public function testIPv6(): void
     {
         $ip = new Ip($value = '2001:4860:4860::8888');
-        $this->assertEquals($value, $ip->getValue());
-        $this->assertEquals($value, (string)$ip);
+        $this->assertSame($value, $ip->getValue());
+        $this->assertSame($value, (string)$ip);
     }
 
     public function testInvalid(): void

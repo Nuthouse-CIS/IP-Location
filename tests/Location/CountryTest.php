@@ -17,10 +17,10 @@ class CountryTest extends TestCase
             $name = 'Russia',
             $coords = new Coordinates(5, 10)
         );
-        $this->assertEquals($isoAlpha2, $country->getIsoAlpha2());
-        $this->assertEquals($isoAlpha3, $country->getIsoAlpha3());
-        $this->assertEquals($name, $country->getName());
-        $this->assertEquals($coords, $country->getCoordinates());
+        $this->assertSame($isoAlpha2, $country->getIsoAlpha2());
+        $this->assertSame($isoAlpha3, $country->getIsoAlpha3());
+        $this->assertSame($name, $country->getName());
+        $this->assertSame($coords, $country->getCoordinates());
     }
 
     public function testCase(): void
@@ -29,8 +29,8 @@ class CountryTest extends TestCase
             'ru',
             'rus'
         );
-        $this->assertEquals('RU', $country->getIsoAlpha2());
-        $this->assertEquals('RUS', $country->getIsoAlpha3());
+        $this->assertSame('RU', $country->getIsoAlpha2());
+        $this->assertSame('RUS', $country->getIsoAlpha3());
     }
 
     public function testAtleastException(): void
@@ -44,7 +44,7 @@ class CountryTest extends TestCase
         $country = new Country(
             $isoAlpha2 = 'RU'
         );
-        $this->assertEquals($isoAlpha2, $country->getIsoAlpha2());
+        $this->assertSame($isoAlpha2, $country->getIsoAlpha2());
     }
 
     public function testAtleastIsoAlpha3(): void
@@ -53,7 +53,7 @@ class CountryTest extends TestCase
             null,
             $isoAlpha3 = 'RUS'
         );
-        $this->assertEquals($isoAlpha3, $country->getIsoAlpha3());
+        $this->assertSame($isoAlpha3, $country->getIsoAlpha3());
     }
 
     public function testAtleastName(): void
@@ -63,7 +63,7 @@ class CountryTest extends TestCase
             null,
             $name = 'Russia'
         );
-        $this->assertEquals($name, $country->getName());
+        $this->assertSame($name, $country->getName());
     }
 
     public function testLengthAlpha2(): void

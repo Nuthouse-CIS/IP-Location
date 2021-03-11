@@ -53,13 +53,13 @@ class IpGeoLocationIoAdapter implements Locator
      */
     protected function handleRequest(Ip $ip): array
     {
-        $uri = $this->baseUrl.'?'.http_build_query(
-                [
+        $uri = $this->baseUrl . '?' . http_build_query(
+            [
                     'apiKey' => $this->apiKey,
                     'ip'     => (string)$ip,
                     'lang'   => $this->lang,
                 ]
-            );
+        );
 
         $request = $this->requestFactory->createRequest('GET', $uri);
 
@@ -76,7 +76,7 @@ class IpGeoLocationIoAdapter implements Locator
             throw new IPLocationException((string)$body['message']);
         } else {
             throw new IPLocationException(
-                'IpGeoLocationIo service responed with unhandled result'
+                'The IpGeoLocationIo service responded with an unknown result'
             );
         }
     }
@@ -91,8 +91,8 @@ class IpGeoLocationIoAdapter implements Locator
      * country_name: string,
      * city?: string,
      * state_prov?: string,
-     * latitude: float,
-     * longitude: float,
+     * latitude: string,
+     * longitude: string,
      * } $body
      *
      * @return Location|null
@@ -105,7 +105,7 @@ class IpGeoLocationIoAdapter implements Locator
             || isset($body['country_name'])
         ) {
             $city = $region = null;
-            $coords = new Coordinates($body['latitude'], $body['longitude']);
+            $coords = new Coordinates((float)$body['latitude'], (float)$body['longitude']);
             if (isset($body['city'])) {
                 $city = new City($body['city'], $coords);
                 $coords = null;

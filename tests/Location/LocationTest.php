@@ -19,9 +19,9 @@ class LocationTest extends TestCase
             $city = new City('Saint-Petersburg', null)
         );
 
-        $this->assertEquals($country, $location->getCountry());
-        $this->assertEquals($region, $location->getRegion());
-        $this->assertEquals($city, $location->getCity());
+        $this->assertSame($country, $location->getCountry());
+        $this->assertSame($region, $location->getRegion());
+        $this->assertSame($city, $location->getCity());
     }
 
     public function testCoordinates(): void
@@ -38,7 +38,7 @@ class LocationTest extends TestCase
                 $coords = new Coordinates(10, 10)
             )
         );
-        $this->assertEquals($coords, $location->getCoordinates());
+        $this->assertSame($coords, $location->getCoordinates());
 
         $location2 = new Location(
             $country = new Country(null, null, 'Russia', new Coordinates(1, 1)),
@@ -49,7 +49,7 @@ class LocationTest extends TestCase
             ),
             $city = new City('Saint-Petersburg')
         );
-        $this->assertEquals($coords2, $location2->getCoordinates());
+        $this->assertSame($coords2, $location2->getCoordinates());
 
         $location3 = new Location(
             $country = new Country(
@@ -61,6 +61,6 @@ class LocationTest extends TestCase
             $region = new Region('Saint-Petersburg'),
             $city = new City('Saint-Petersburg')
         );
-        $this->assertEquals($coords3, $location3->getCoordinates());
+        $this->assertSame($coords3, $location3->getCoordinates());
     }
 }

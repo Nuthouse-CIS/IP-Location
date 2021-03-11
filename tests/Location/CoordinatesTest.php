@@ -10,8 +10,8 @@ class CoordinatesTest extends TestCase
 
     public function testSuccess(): void
     {
-        $coordinates = new Coordinates($latitude = 10, $longitude = 5);
-        $this->assertEquals($latitude, $coordinates->getLatitude());
-        $this->assertEquals($longitude, $coordinates->getLongitude());
+        $coordinates = new Coordinates($latitude = 10.0, $longitude = 5.0);
+        $this->assertSame($latitude, $coordinates->getLatitude());
+        $this->assertSame($longitude, $coordinates->getLongitude());
     }
 }
