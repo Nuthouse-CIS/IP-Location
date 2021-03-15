@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace NuthouseCIS\IPLocation\Tests\Locators\IpGeoLocationIo;
 
 use NuthouseCIS\IPLocation\Exception\IPLocationException;
