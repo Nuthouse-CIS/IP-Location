@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace NuthouseCIS\IPLocation\Tests;
 
 use InvalidArgumentException;
@@ -13,6 +15,8 @@ class IpTest extends TestCase
         $ip = new Ip($value = '8.8.8.8');
         $this->assertSame($value, $ip->getValue());
         $this->assertSame($value, (string)$ip);
+        $this->assertTrue($ip->isVersion4());
+        $this->assertFalse($ip->isVersion6());
     }
 
     public function testIPv6(): void
@@ -20,6 +24,8 @@ class IpTest extends TestCase
         $ip = new Ip($value = '2001:4860:4860::8888');
         $this->assertSame($value, $ip->getValue());
         $this->assertSame($value, (string)$ip);
+        $this->assertTrue($ip->isVersion6());
+        $this->assertFalse($ip->isVersion4());
     }
 
     public function testInvalid(): void
