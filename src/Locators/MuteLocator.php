@@ -13,9 +13,9 @@ use NuthouseCIS\IPLocation\Locator;
 class MuteLocator implements Locator
 {
     private Locator $next;
-    private ErrorHandler $errorHandler;
+    private ?ErrorHandler $errorHandler;
 
-    public function __construct(Locator $next, ErrorHandler $errorHandler)
+    public function __construct(Locator $next, ?ErrorHandler $errorHandler = null)
     {
         $this->next = $next;
         $this->errorHandler = $errorHandler;
@@ -26,7 +26,9 @@ class MuteLocator implements Locator
         try {
             return $this->next->locate($ip);
         } catch (Exception $e) {
-            $this->errorHandler->handle($e);
+            if ($this->errorHandler) {
+                $this->errorHandler->handle($e);
+            }
 
             return null;
         }

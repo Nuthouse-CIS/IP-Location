@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace NuthouseCIS\IPLocation\Tests\Locators;
 
 use Exception;
@@ -18,18 +20,33 @@ class MuteLocatorTest extends TestCase
         $nextLocator->method('locate')
             ->willThrowException($exception);
 
-        $errorHandler = new class implements ErrorHandler {
-            public function handle(Exception $exception): void
-            {
-            }
-        };
-
-        $locator = new MuteLocator($nextLocator, $errorHandler);
+        $locator = new MuteLocator($nextLocator);
         try {
             $locator->locate(new Ip('8.8.8.8'));
             $this->assertTrue(true);
         } catch (Exception $e) {
             $this->fail('Threw an exception');
         }
+    }
+
+    public function testHandleException(): void
+    {
+        $exception = new Exception('');
+        $nextLocator = $this->createMock(Locator::class);
+        $nextLocator->method('locate')
+            ->willThrowException($exception);
+
+        $errorHandler = new class implements ErrorHandler {
+            public bool $handled = false;
+            public function handle(Exception $exception): void
+            {
+                $this->handled = true;
+            }
+        };
+
+        $locator = new MuteLocator($nextLocator, $errorHandler);
+        $locator->locate(new Ip('8.8.8.8'));
+
+        $this->assertTrue($errorHandler->handled);
     }
 }
