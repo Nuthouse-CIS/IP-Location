@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace NuthouseCIS\IPLocation\Tests\Location;
 
 use NuthouseCIS\IPLocation\Location\City;
@@ -16,12 +18,20 @@ class LocationTest extends TestCase
         $location = new Location(
             $country = new Country('RU', null, null, null),
             $region = new Region('Saint-Petersburg', null, null),
-            $city = new City('Saint-Petersburg', null)
+            $city = new City('Saint-Petersburg', null),
+            $extra = ['extra' => true]
         );
 
         $this->assertSame($country, $location->getCountry());
         $this->assertSame($region, $location->getRegion());
         $this->assertSame($city, $location->getCity());
+        $this->assertSame($extra, $location->getExtra());
+
+        $locationMinimal = new Location($country);
+        $this->assertNull($locationMinimal->getRegion());
+        $this->assertNull($locationMinimal->getCity());
+        $this->assertNull($locationMinimal->getCoordinates());
+        $this->assertNull($locationMinimal->getExtra());
     }
 
     public function testCoordinates(): void

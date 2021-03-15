@@ -13,8 +13,8 @@ class Location
 
     public function __construct(
         Country $country,
-        ?Region $region,
-        ?City $city,
+        ?Region $region = null,
+        ?City $city = null,
         ?array $extra = null
     ) {
         $this->country = $country;
