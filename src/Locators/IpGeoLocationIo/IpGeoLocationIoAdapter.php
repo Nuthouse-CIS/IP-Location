@@ -22,12 +22,16 @@ class IpGeoLocationIoAdapter implements Locator
     protected string $apiKey;
     protected string $lang;
     protected string $baseUrl;
+    protected ?array $fields;
+    protected ?array $excludes;
 
     public function __construct(
         ClientInterface $client,
         RequestFactoryInterface $requestFactory,
         string $apiKey,
         string $lang = 'en',
+        ?array $fields = ['geo'],
+        ?array $excludes = null,
         string $baseUrl = 'https://api.ipgeolocation.io/ipgeo'
     ) {
         $this->client = $client;
@@ -35,6 +39,8 @@ class IpGeoLocationIoAdapter implements Locator
         $this->apiKey = $apiKey;
         $this->lang = $lang;
         $this->baseUrl = $baseUrl;
+        $this->fields = $fields;
+        $this->excludes = $excludes;
     }
 
     public function locate(Ip $ip): ?Location
@@ -53,13 +59,18 @@ class IpGeoLocationIoAdapter implements Locator
      */
     protected function handleRequest(Ip $ip): array
     {
-        $uri = $this->baseUrl . '?' . http_build_query(
-            [
-                    'apiKey' => $this->apiKey,
-                    'ip'     => (string)$ip,
-                    'lang'   => $this->lang,
-                ]
-        );
+        $query = [
+            'apiKey' => $this->apiKey,
+            'ip'     => (string)$ip,
+            'lang'   => $this->lang,
+        ];
+        if ($this->fields) {
+            $query['fields'] = implode(',', $this->fields);
+        }
+        if ($this->excludes) {
+            $query['excludes'] = implode(',', $this->excludes);
+        }
+        $uri = $this->baseUrl . '?' . http_build_query($query);
 
         $request = $this->requestFactory->createRequest('GET', $uri);
 
@@ -86,13 +97,13 @@ class IpGeoLocationIoAdapter implements Locator
      *
      * @psalm-param array{
      * ip: string,
-     * country_code2: string,
-     * country_code3: string,
-     * country_name: string,
+     * country_code2?: string,
+     * country_code3?: string,
+     * country_name?: string,
      * city?: string,
      * state_prov?: string,
-     * latitude: string,
-     * longitude: string,
+     * latitude?: string,
+     * longitude?: string,
      * } $body
      *
      * @return Location|null
@@ -104,8 +115,13 @@ class IpGeoLocationIoAdapter implements Locator
             || isset($body['country_code3'])
             || isset($body['country_name'])
         ) {
-            $city = $region = null;
-            $coords = new Coordinates((float)$body['latitude'], (float)$body['longitude']);
+            $city = $region = $coords = null;
+            if (isset($body['latitude']) && (float)$body['longitude']) {
+                $coords = new Coordinates(
+                    (float)$body['latitude'],
+                    (float)$body['longitude']
+                );
+            }
             if (isset($body['city'])) {
                 $city = new City($body['city'], $coords);
                 $coords = null;
@@ -119,9 +135,9 @@ class IpGeoLocationIoAdapter implements Locator
                 $coords = null;
             }
             $country = new Country(
-                $body['country_code2'],
-                $body['country_code3'],
-                $body['country_name'],
+                $body['country_code2'] ?? null,
+                $body['country_code3'] ?? null,
+                $body['country_name'] ?? null,
                 $coords
             );
 
