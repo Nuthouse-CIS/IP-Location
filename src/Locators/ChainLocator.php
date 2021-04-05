@@ -31,11 +31,10 @@ class ChainLocator implements Locator
             if ($location->getCity() !== null) {
                 return $location;
             }
-            if ($result === null && $location->getRegion() !== null) {
+
+            if ($result === null) {
                 $result = $location;
-                continue;
-            }
-            if ($result === null || $result->getRegion() === null) {
+            } elseif ($result->getRegion() === null && $location->getRegion() !== null) {
                 $result = $location;
             }
         }

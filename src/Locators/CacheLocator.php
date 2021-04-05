@@ -13,13 +13,13 @@ class CacheLocator implements Locator
 {
     private Locator $next;
     private CacheInterface $cache;
-    private int $ttl;
+    private ?int $ttl;
     private string $prefix;
 
     public function __construct(
         Locator $next,
         CacheInterface $cache,
-        int $ttl,
+        ?int $ttl = null,
         string $prefix = 'location-'
     ) {
         $this->next = $next;
