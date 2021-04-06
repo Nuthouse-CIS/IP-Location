@@ -1,6 +1,7 @@
 {
-  "name": "seagull-4auka/ip-location",
-  "description": "description",
+  "name": "nuthouse-cis/ip-location",
+  "description": "A simple set of third-party service implementations for determining a geographical location using an IP address",
+  "keywords": ["ip", "location", "geo", "country", "ipinfo", "city"],
   "license": "BSD-3-Clause",
   "authors": [
     {
