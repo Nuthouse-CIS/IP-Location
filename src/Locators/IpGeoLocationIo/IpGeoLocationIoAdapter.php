@@ -116,7 +116,7 @@ class IpGeoLocationIoAdapter implements Locator
             || isset($body['country_name'])
         ) {
             $city = $region = $coords = null;
-            if (isset($body['latitude']) && (float)$body['longitude']) {
+            if (isset($body['latitude'], $body['longitude'])) {
                 $coords = new Coordinates(
                     (float)$body['latitude'],
                     (float)$body['longitude']
