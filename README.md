@@ -29,9 +29,9 @@ Examples
 ### Basic usage
 
 ```php
-use NuthouseCIS\IPLocation\Ip;use NuthouseCIS\IPLocation\Locator;require 'vendor/autoload.php';
-/** @var $locator Locator */
-$ip = new Ip('8.8.8.8');
+require 'vendor/autoload.php';
+/** @var $locator \NuthouseCIS\IPLocation\Locator */
+$ip = new \NuthouseCIS\IPLocation\Ip('8.8.8.8');
 $location = $locator->locate($ip);
 
 if ($location
@@ -45,8 +45,8 @@ if ($location
 Also placed JSON decorator:
 
 ```php
-/** @var $location Location */
-use NuthouseCIS\IPLocation\Decorators\LocationJsonDecorator;use NuthouseCIS\IPLocation\Location\Location;$decorator = new LocationJsonDecorator($location);
+/** @var $location \NuthouseCIS\IPLocation\Location\Location */
+$decorator = new \NuthouseCIS\IPLocation\Decorators\LocationJsonDecorator($location);
 print json_encode($decorator);
 ```
 
@@ -57,10 +57,10 @@ of `\NuthouseCIS\IPLocation\Locator`
 
 ```php
 /**
- * @var $simpleCacheIterface CacheInterface
- * @var $adapter Locator
+ * @var $simpleCacheIterface \Psr\SimpleCache\CacheInterface
+ * @var $adapter \NuthouseCIS\IPLocation\Locator
  */
-use NuthouseCIS\IPLocation\Locator;use NuthouseCIS\IPLocation\Locators\CacheLocator;use Psr\SimpleCache\CacheInterface;$locator = new CacheLocator(
+$locator = new \NuthouseCIS\IPLocation\Locators\CacheLocator(
     $adapter,
     $simpleCacheIterface,
     10 * 60,
@@ -74,16 +74,16 @@ Mute locator catch all `Exceptions` and use implementation of `\NuthouseCIS\IPLo
 they
 
 ```php
-use NuthouseCIS\IPLocation\Handlers\ErrorHandler;use NuthouseCIS\IPLocation\Locator;use NuthouseCIS\IPLocation\Locators\MuteLocator;$errorHandler = new class implements ErrorHandler {
+$errorHandler = new class implements \NuthouseCIS\IPLocation\Handlers\ErrorHandler {
     public function handle(Exception $exception): void
     {
         // Do some stuff with exception
     }
 };
 /**
- * @var $adapter Locator
+ * @var $adapter \NuthouseCIS\IPLocation\Locator
  */
-$locator = new MuteLocator(
+$locator = new \NuthouseCIS\IPLocation\Locators\MuteLocator(
     $adapter,
     $errorHandler
 );
@@ -93,11 +93,11 @@ Also you can use `\NuthouseCIS\IPLocation\Handlers\PsrLogErrorHandler`
 
 ```php
 /**
- * @var $logger LoggerInterface
+ * @var $logger \Psr\Log\LoggerInterface
  */
-use NuthouseCIS\IPLocation\Handlers\PsrLogErrorHandler;use Psr\Log\LoggerInterface;use Psr\Log\LogLevel;$errorHandler = new PsrLogErrorHandler(
+$errorHandler = new \NuthouseCIS\IPLocation\Handlers\PsrLogErrorHandler(
     $logger,
-    LogLevel::ERROR
+    \Psr\Log\LogLevel::ERROR
 );
 ```
 
@@ -107,9 +107,9 @@ Chain locator returns the most complete result from all passed implementations o
 
 ```php
 /**
- * @var $adapters Locator[]
+ * @var $adapters \NuthouseCIS\IPLocation\Locator[]
  */
-use NuthouseCIS\IPLocation\Locator;use NuthouseCIS\IPLocation\Locators\ChainLocator;$locator = new ChainLocator(
+$locator = new \NuthouseCIS\IPLocation\Locators\ChainLocator(
     ...$adapters
 );
 ```
@@ -121,8 +121,8 @@ Services
 
 ```php
 /** 
- * @var $client ClientInterface
- * @var $requestFactory RequestFactoryInterface
+ * @var $client \Psr\Http\Client\ClientInterface
+ * @var $requestFactory \Psr\Http\Message\RequestFactoryInterface
  * @var $apiKey string API Key from your dashboard https://app.ipgeolocation.io/
  * @var $lang string [en, de, ru, ja, fr, cn, es, cs, it]
  * @var $fields null|string[] required fields. Default: ['geo'] - minimum sufficient set of fields
@@ -130,7 +130,7 @@ Services
  * @var $baseUrl string default: https://api.ipgeolocation.io/ipgeo
  * @link https://ipgeolocation.io/documentation/ip-geolocation-api.html
  */
-use NuthouseCIS\IPLocation\Ip;use NuthouseCIS\IPLocation\Locators\IpGeoLocationIo\IpGeoLocationIoAdapter;use Psr\Http\Client\ClientInterface;use Psr\Http\Message\RequestFactoryInterface;$locator = new IpGeoLocationIoAdapter(
+$locator = new \NuthouseCIS\IPLocation\Locators\IpGeoLocationIo\IpGeoLocationIoAdapter(
     $client,
     $requestFactory,
     $apiKey,
@@ -139,7 +139,7 @@ use NuthouseCIS\IPLocation\Ip;use NuthouseCIS\IPLocation\Locators\IpGeoLocationI
     $excludes,
     $baseUrl
 );
-$location = $locator->locate(new Ip('8.8.8.8'));
+$location = $locator->locate(new \NuthouseCIS\IPLocation\Ip('8.8.8.8'));
 ```
 Testing
 -------
