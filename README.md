@@ -10,7 +10,7 @@ Installation
 The preferred way to install this extension is through [composer]
 
 ```shell
-composer require nuthouse-cis/sxgeo
+composer require nuthouse-cis/ip-location
 ```
 
 Or add to your `composer.json` file
@@ -18,7 +18,7 @@ Or add to your `composer.json` file
 ```json
 {
   "require": {
-    "nuthouse-cis/sxgeo": "*"
+    "nuthouse-cis/ip-location": "*"
   }
 }
 ```
@@ -43,6 +43,7 @@ if ($location
 }
 ```
 Also placed JSON decorator:
+
 ```php
 /** @var $location \NuthouseCIS\IPLocation\Location\Location */
 $decorator = new \NuthouseCIS\IPLocation\Decorators\LocationJsonDecorator($location);
@@ -117,6 +118,7 @@ Services
 --------
 ### IpGeoLocation
 [IP Geolocation API Documentation]
+
 ```php
 /** 
  * @var $client \Psr\Http\Client\ClientInterface
