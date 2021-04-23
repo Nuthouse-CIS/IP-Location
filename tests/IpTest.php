@@ -17,6 +17,7 @@ class IpTest extends TestCase
         $this->assertSame($value, (string)$ip);
         $this->assertTrue($ip->isVersion4());
         $this->assertFalse($ip->isVersion6());
+        $this->assertSame(4, $ip->getVersion());
     }
 
     public function testIPv6(): void
@@ -26,6 +27,7 @@ class IpTest extends TestCase
         $this->assertSame($value, (string)$ip);
         $this->assertTrue($ip->isVersion6());
         $this->assertFalse($ip->isVersion4());
+        $this->assertSame(6, $ip->getVersion());
     }
 
     public function testInvalid(): void
