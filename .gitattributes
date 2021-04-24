@@ -4,3 +4,4 @@
 /.travis.yml        export-ignore
 /phpunit.xml        export-ignore
 /tests              export-ignore
+*.dat                binary

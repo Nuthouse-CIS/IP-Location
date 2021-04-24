@@ -7,6 +7,8 @@
     <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
     <rule ref="Generic.Files.LineLength">
         <exclude-pattern>tests/Locators/IpGeoLocationIo</exclude-pattern>
+        <exclude-pattern>tests/Locators/SypexGeo/SypexGeoApiAdapterTest.php</exclude-pattern>
+        <exclude-pattern>tests/Locators/Ip2Location/Ip2LocationApiAdapterTest.php</exclude-pattern>
     </rule>
     <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace">
         <properties>

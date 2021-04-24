@@ -8,5 +8,10 @@ use NuthouseCIS\IPLocation\Location\Location;
 
 interface Locator
 {
+    /**
+     * @param Ip $ip
+     *
+     * @return Location|null
+     */
     public function locate(Ip $ip): ?Location;
 }

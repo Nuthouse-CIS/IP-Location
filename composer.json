@@ -11,12 +11,14 @@
   ],
   "require": {
     "php": "^7.4|^8.0",
+    "ext-json": "*",
     "webmozart/assert": "^1.9",
     "psr/log": "^1",
     "psr/simple-cache": "^1",
     "psr/http-client": "^1",
     "psr/http-factory": "^1",
-    "ext-json": "*"
+    "nuthouse-cis/sxgeo": "^1",
+    "ip2location/ip2location-php": "^9"
   },
   "require-dev": {
     "phpunit/phpunit": "^9",

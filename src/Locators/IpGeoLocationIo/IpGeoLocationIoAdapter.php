@@ -15,6 +15,21 @@ use NuthouseCIS\IPLocation\Locator;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 
+/**
+ * Class IpGeoLocationIoAdapter
+ *
+ * @package NuthouseCIS\IPLocation\Locators\IpGeoLocationIo
+ * @psalm-type ApiReturn array{
+ *   ip: string,
+ *   country_code2?: string,
+ *   country_code3?: string,
+ *   country_name?: string,
+ *   city?: string,
+ *   state_prov?: string,
+ *   latitude?: string,
+ *   longitude?: string,
+ * }
+ */
 class IpGeoLocationIoAdapter implements Locator
 {
     protected ClientInterface $client;
@@ -75,10 +90,8 @@ class IpGeoLocationIoAdapter implements Locator
         $request = $this->requestFactory->createRequest('GET', $uri);
 
         $response = $this->client->sendRequest($request);
-        /**
-         * @var array $body
-         * @psalm-suppress MixedAssignment
-         */
+
+        /** @psalm-var ApiReturn $body */
         $body = json_decode($response->getBody()->getContents(), true);
 
         if ($response->getStatusCode() === 200 && isset($body['ip'])) {
@@ -95,16 +108,7 @@ class IpGeoLocationIoAdapter implements Locator
     /**
      * @param array $body
      *
-     * @psalm-param array{
-     * ip: string,
-     * country_code2?: string,
-     * country_code3?: string,
-     * country_name?: string,
-     * city?: string,
-     * state_prov?: string,
-     * latitude?: string,
-     * longitude?: string,
-     * } $body
+     * @psalm-param ApiReturn $body
      *
      * @return Location|null
      */

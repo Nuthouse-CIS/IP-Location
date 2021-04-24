@@ -38,6 +38,7 @@ class ChainLocator implements Locator
                 $result = $location;
             }
         }
+
         return $result;
     }
 }
